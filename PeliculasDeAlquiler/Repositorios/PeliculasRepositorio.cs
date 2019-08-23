@@ -60,7 +60,7 @@ namespace PeliculasDeAlquiler.Repositorios
             //<consulta> pasando por parámentro de la función el comando SQL, esta función devuelve una tabla.
             //2)Devuelve con el comando <return> a travéz de la función <consulta_login> el resultado 
             //del SQL.
-            return _BD.consulta(sqltxt);
+            return _BD.consulta(sqltxt);//
         }
     }
 }
