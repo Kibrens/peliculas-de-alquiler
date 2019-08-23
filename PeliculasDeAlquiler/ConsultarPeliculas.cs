@@ -8,18 +8,26 @@ namespace PeliculasDeAlquiler
 {
     public partial class ConsultarPeliculas : Form
     {
-        PeliculasRepositorio _peliculasRepositorio;
+        PeliculasRepositorio _peliculasRepositorio = new PeliculasRepositorio();
         public ConsultarPeliculas()
         {
             InitializeComponent();
-            _peliculasRepositorio = new PeliculasRepositorio();
+
         }
 
         private void ConsultarPeliculas_Load(object sender, EventArgs e)
         {
             ActualizarPeliculas();
+            ActualizarCombo();
         }
+        public void ActualizarCombo()
+        {
+            var generos = _peliculasRepositorio.ObtenerGeneros();
+            ComboText.ValueMember = "id";
+            ComboText.DisplayMember = "Tipo";
+            ComboText.DataSource = generos;
 
+        }
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             ActualizarPeliculas();
@@ -49,6 +57,33 @@ namespace PeliculasDeAlquiler
             //DgvPeliculas.Columns[1].DisplayIndex = 1;
             //DgvPeliculas.Columns[2].DisplayIndex = 2;
             //DgvPeliculas.Update();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Buscar_Click(object sender, EventArgs e)
+        {
+            DgvPeliculas.Rows.Clear();
+            var valor = ComboText.SelectedValue;
+            var peliculas = _peliculasRepositorio.Buscar(valor.ToString()).Rows;
+            var filas = new List<DataGridViewRow>();
+            foreach (DataRow pelicula in peliculas)
+            {
+                if (pelicula.HasErrors)
+                    continue; // no corto el ciclo
+                var fila = new string[] {
+                    pelicula.ItemArray[0].ToString(),
+                    pelicula.ItemArray[1].ToString(),
+                    pelicula.ItemArray[2].ToString(),
+                    pelicula.ItemArray[3].ToString(),
+                    pelicula.ItemArray[4].ToString()
+                };
+
+                DgvPeliculas.Rows.Add(fila);
+            }
         }
     }
 }

@@ -30,12 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultarPeliculas));
             this.DgvPeliculas = new System.Windows.Forms.DataGridView();
-            this.BtnRefresh = new System.Windows.Forms.Button();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Titulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaLanzamiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Genero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Director = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnRefresh = new System.Windows.Forms.Button();
+            this.ComboText = new System.Windows.Forms.ComboBox();
+            this.Buscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DgvPeliculas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,28 +52,13 @@
             this.FechaLanzamiento,
             this.Genero,
             this.Director});
-            this.DgvPeliculas.Location = new System.Drawing.Point(55, 303);
+            this.DgvPeliculas.Location = new System.Drawing.Point(41, 246);
+            this.DgvPeliculas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DgvPeliculas.Name = "DgvPeliculas";
             this.DgvPeliculas.ReadOnly = true;
             this.DgvPeliculas.RowTemplate.Height = 24;
-            this.DgvPeliculas.Size = new System.Drawing.Size(964, 368);
+            this.DgvPeliculas.Size = new System.Drawing.Size(723, 299);
             this.DgvPeliculas.TabIndex = 0;
-            // 
-            // BtnRefresh
-            // 
-            this.BtnRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.BtnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnRefresh.BackgroundImage")));
-            this.BtnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BtnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.Bisque;
-            this.BtnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRefresh.ForeColor = System.Drawing.Color.Transparent;
-            this.BtnRefresh.Location = new System.Drawing.Point(953, 234);
-            this.BtnRefresh.Name = "BtnRefresh";
-            this.BtnRefresh.Size = new System.Drawing.Size(66, 63);
-            this.BtnRefresh.TabIndex = 1;
-            this.BtnRefresh.UseVisualStyleBackColor = false;
-            this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
             // 
             // Codigo
             // 
@@ -104,14 +91,53 @@
             this.Director.Name = "Director";
             this.Director.ReadOnly = true;
             // 
+            // BtnRefresh
+            // 
+            this.BtnRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.BtnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BtnRefresh.BackgroundImage")));
+            this.BtnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BtnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.Bisque;
+            this.BtnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRefresh.ForeColor = System.Drawing.Color.Transparent;
+            this.BtnRefresh.Location = new System.Drawing.Point(715, 190);
+            this.BtnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnRefresh.Name = "BtnRefresh";
+            this.BtnRefresh.Size = new System.Drawing.Size(50, 51);
+            this.BtnRefresh.TabIndex = 1;
+            this.BtnRefresh.UseVisualStyleBackColor = false;
+            this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            // 
+            // ComboText
+            // 
+            this.ComboText.FormattingEnabled = true;
+            this.ComboText.Location = new System.Drawing.Point(149, 121);
+            this.ComboText.Name = "ComboText";
+            this.ComboText.Size = new System.Drawing.Size(121, 21);
+            this.ComboText.TabIndex = 2;
+            this.ComboText.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // Buscar
+            // 
+            this.Buscar.Location = new System.Drawing.Point(310, 118);
+            this.Buscar.Name = "Buscar";
+            this.Buscar.Size = new System.Drawing.Size(75, 23);
+            this.Buscar.TabIndex = 3;
+            this.Buscar.Text = "Buscar";
+            this.Buscar.UseVisualStyleBackColor = true;
+            this.Buscar.Click += new System.EventHandler(this.Buscar_Click);
+            // 
             // ConsultarPeliculas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Bisque;
-            this.ClientSize = new System.Drawing.Size(1097, 701);
+            this.ClientSize = new System.Drawing.Size(823, 570);
+            this.Controls.Add(this.Buscar);
+            this.Controls.Add(this.ComboText);
             this.Controls.Add(this.BtnRefresh);
             this.Controls.Add(this.DgvPeliculas);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ConsultarPeliculas";
             this.Text = "Películas";
             this.Load += new System.EventHandler(this.ConsultarPeliculas_Load);
@@ -129,6 +155,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaLanzamiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Genero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Director;
+        private System.Windows.Forms.ComboBox ComboText;
+        private System.Windows.Forms.Button Buscar;
     }
 }
 

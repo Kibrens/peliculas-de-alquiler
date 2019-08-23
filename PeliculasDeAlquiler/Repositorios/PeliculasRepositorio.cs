@@ -10,11 +10,11 @@ namespace PeliculasDeAlquiler.Repositorios
         /// <summary>
         /// Solo ciertas ciertas clases tiene acceso a la BD
         /// </summary>
-        private acceso_BD _BD ;
+        private acceso_BD _BD= new acceso_BD(); 
 
         public PeliculasRepositorio()
         {
-            _BD = new acceso_BD();
+            
         }
 
 
@@ -28,7 +28,33 @@ namespace PeliculasDeAlquiler.Repositorios
             //se define una variable local a la función <sqltxt> del tipo <string> donde en el 
             //momento de su creación se le asigan su contenido, que es el comando SELECT  
             //necesario para poder establecer la veracidad del usuario.
-            string sqltxt = "SELECT * FROM peliculas";
+            string sqltxt = "SELECT * FROM peliculas WHERE Peliculas.GeneroId=1";
+
+            //aquí dos acciones. 1)ejecuta el SQL atravéz del objeto <_BD> utilizando la función
+            //<consulta> pasando por parámentro de la función el comando SQL, esta función devuelve una tabla.
+            //2)Devuelve con el comando <return> a travéz de la función <consulta_login> el resultado 
+            //del SQL.
+            return _BD.consulta(sqltxt);
+        }
+        public DataTable ObtenerGeneros()
+        {
+            //se define una variable local a la función <sqltxt> del tipo <string> donde en el 
+            //momento de su creación se le asigan su contenido, que es el comando SELECT  
+            //necesario para poder establecer la veracidad del usuario.
+            string sqltxt = "SELECT * FROM Generos";
+
+            //aquí dos acciones. 1)ejecuta el SQL atravéz del objeto <_BD> utilizando la función
+            //<consulta> pasando por parámentro de la función el comando SQL, esta función devuelve una tabla.
+            //2)Devuelve con el comando <return> a travéz de la función <consulta_login> el resultado 
+            //del SQL.
+            return _BD.consulta(sqltxt);
+        }
+        public DataTable Buscar(string value)
+        {
+            //se define una variable local a la función <sqltxt> del tipo <string> donde en el 
+            //momento de su creación se le asigan su contenido, que es el comando SELECT  
+            //necesario para poder establecer la veracidad del usuario.
+            string sqltxt = "SELECT * FROM Peliculas WHERE GeneroId="+value;
 
             //aquí dos acciones. 1)ejecuta el SQL atravéz del objeto <_BD> utilizando la función
             //<consulta> pasando por parámentro de la función el comando SQL, esta función devuelve una tabla.
