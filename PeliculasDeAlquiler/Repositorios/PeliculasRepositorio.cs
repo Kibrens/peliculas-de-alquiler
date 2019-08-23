@@ -28,13 +28,24 @@ namespace PeliculasDeAlquiler.Repositorios
             //se define una variable local a la función <sqltxt> del tipo <string> donde en el 
             //momento de su creación se le asigan su contenido, que es el comando SELECT  
             //necesario para poder establecer la veracidad del usuario.
-            string sqltxt = "SELECT * FROM peliculas";
+            string sqltxt = "SELECT p.ID, p.titulo, p.fechaLanzamiento, g.tipo AS Genero, d.nombre FROM peliculas p, directores d, generos g WHERE p.DirectorID = d.ID AND p.generoID = g.ID";
 
             //aquí dos acciones. 1)ejecuta el SQL atravéz del objeto <_BD> utilizando la función
             //<consulta> pasando por parámentro de la función el comando SQL, esta función devuelve una tabla.
             //2)Devuelve con el comando <return> a travéz de la función <consulta_login> el resultado 
             //del SQL.
             return _BD.consulta(sqltxt);
+        }
+        public DataTable ObtenerGenerosDT()
+        {
+            string sqltxt = "SELECT * FROM generos";
+            return _BD.consulta(sqltxt);
+        }
+
+        public DataTable ObtenerPeliculasDTFiltros(string genero)
+        {
+           string sqltxt = "SELECT p.ID, p.titulo, p.fechaLanzamiento, g.tipo AS Genero, d.nombre FROM peliculas p, directores d, generos g WHERE p.DirectorID = d.ID AND p.generoID = g.ID AND " + genero+"= g.tipo";
+           return _BD.consulta(sqltxt);
         }
     }
 }
