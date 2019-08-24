@@ -15,6 +15,7 @@ namespace PeliculasDeAlquiler
             _peliculasRepositorio = new PeliculasRepositorio();
         }
 
+        //Relleno el combo box con los géneros de las películas cargadas
         private void ConsultarPeliculas_Load(object sender, EventArgs e)
         {
             ActualizarPeliculas();
@@ -27,6 +28,7 @@ namespace PeliculasDeAlquiler
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             ActualizarPeliculas();
+            //ConsultarPeliculas_Load();
         }
 
         private void ActualizarPeliculas()
@@ -62,17 +64,17 @@ namespace PeliculasDeAlquiler
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Este método es un copy-paste del ActualizarPelículas de más arriba
             DgvPeliculas.Rows.Clear();
             var valor = comboBox1.SelectedValue;
-            /*var peliculas = _peliculasRepositorio.ObtenerPeliculasDT().Rows;
-             * En vez de usar _peliculasRepositorio.ObtenerPeliculasDT().Rows; para obtener filas
+            /*En vez de usar _peliculasRepositorio.ObtenerPeliculasDT().Rows; para obtener filas
              * voy a usar la siguiente línea*/
             var peliculas = _peliculasRepositorio.ObtenerPeliculasDTFiltros(valor.ToString()).Rows;
             var filas = new List<DataGridViewRow>();
             foreach (DataRow pelicula in peliculas)
             {
                 if (pelicula.HasErrors)
-                    continue; // no corto el ciclo   
+                    continue; // no corto el ciclo
                 var fila = new string[] {
                     pelicula.ItemArray[0].ToString(),
                     pelicula.ItemArray[1].ToString(),

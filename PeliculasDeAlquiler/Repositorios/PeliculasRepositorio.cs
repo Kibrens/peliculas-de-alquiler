@@ -42,10 +42,12 @@ namespace PeliculasDeAlquiler.Repositorios
             return _BD.consulta(sqltxt);
         }
 
-        public DataTable ObtenerPeliculasDTFiltros(string genero)
+        public DataTable ObtenerPeliculasDTFiltros(string generoID)
         {
-           string sqltxt = "SELECT p.ID, p.titulo, p.fechaLanzamiento, g.tipo AS Genero, d.nombre FROM peliculas p, directores d, generos g WHERE p.DirectorID = d.ID AND p.generoID = g.ID AND " + genero+"= g.tipo";
-           return _BD.consulta(sqltxt);
+            //en la búsqueda en la tabla de la DB debo pasarle el ID del género, no el string del nombre
+            //el string del nombre del género es algo que uso para comparación en la consulta SQL
+            string sqltxt = "SELECT p.ID, p.titulo, p.fechaLanzamiento, g.tipo AS Genero, d.nombre AS Director FROM peliculas p, directores d, generos g WHERE p.DirectorID = d.ID AND p.generoID = " + generoID + "AND p.generoID = g.ID";
+            return _BD.consulta(sqltxt);
         }
     }
 }
